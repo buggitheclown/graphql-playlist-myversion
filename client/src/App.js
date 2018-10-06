@@ -3,6 +3,7 @@ import ApolliClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 
 import BookList from './components/BookList.js';
+import AddBook from './components/AddBook.js';
 
 //apollo setup
 const client = new ApolliClient({
@@ -16,6 +17,7 @@ class App extends Component {
       <div id="main">
         <h1>Dummy Header</h1>
         <BookList/>
+        <AddBook/>
       </div>
     </ApolloProvider>
     );
