@@ -16,27 +16,15 @@ const getBooksQ = gql`{
 }`
 
 class BookList extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = ({dataFetched: false})
-  }
-
-  componentDidUpdate(){
-    if (!this.state.dataFetched){
-    this.setState({dataFetched: true});
-    }
-  }
-
   render() {
-    let books = (this.props.data.books!==undefined) ? (
+    let books = (!(this.props.data.loading || this.props.data.books===undefined || this.props.data.books===null)) ? (
       <ul id="bookList">
         {this.props.data.books.map((book) =>
           <li key={book.id}><Book name={book.name} author={book.author.name} genre={book.genre}/></li>
         )}
       </ul>
     ) : (
-      this.state.dataFetched ? "No books registered =(" : "Loading books..."
+      !this.props.data.loading ? "No books registered =(" : "Loading books..."
     )
     return (
       <div>
